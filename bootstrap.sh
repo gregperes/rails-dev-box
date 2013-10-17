@@ -2,16 +2,18 @@
 
 sudo su
 
-apt-get -y update
+apt-get update && sudo apt-get upgrade
 
 apt-get install -y git curl vim make
+apt-get install -y build-essential zlib1g-dev curl git-core sqlite3 libsqlite3-dev
 apt-get install -y sqlite3 libsqlite3-dev nodejs
 
-curl -L https://get.rvm.io | bash -s stable
-source /usr/local/rvm/scripts/rvm
-
-rvm install 2.0
-rvm use 2.0.0 --default
+wget http://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.gz
+tar -xzvf ruby-2.0.0-p247.tar.gz
+cd ruby-2.0.0-p247/
+./configure
+make
+make install
 
 gem update --system
 gem install rails
