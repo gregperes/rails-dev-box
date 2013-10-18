@@ -2,33 +2,31 @@
 
 sudo su
 
-pm="apt-get"
+pm="apt-get install -y"
 
 echo -e "\nUsing $pm for package installation\n"
 
 # Install build tools
 echo -e "\n=> Installing build tools..."
-sudo $pm -y install \
-    wget curl build-essential clang \
-    bison openssl zlib1g \
-    libxslt1.1 libssl-dev libxslt1-dev \
-    libxml2 libffi-dev libyaml-dev \
-    libxslt-dev autoconf libc6-dev \
-    libreadline6-dev zlib1g-dev libcurl4-openssl-dev \
-    libtool
+sudo $pm wget curl build-essential clang
+sudo $pm bison openssl zlib1g
+sudo $pm libxslt1.1 libssl-dev libxslt1-dev
+sudo $pm libxml2 libffi-dev libyaml-dev
+sudo $pm libxslt-dev autoconf libc6-dev
+sudo $pm libreadline6-dev zlib1g-dev libcurl4-openssl-dev libtool
 echo "==> done..."
 
 echo -e "\n=> Installing libs needed for sqlite and mysql..."
-sudo $pm -y install libsqlite3-0 sqlite3 libsqlite3-dev libmysqlclient-dev
+sudo $pm libsqlite3-0 sqlite3 libsqlite3-dev libmysqlclient-dev
 echo "==> done..."
 
 echo -e "\n=> Installing nodejs..."
-sudo $pm -y install nodejs
+sudo $pm nodejs
 echo "==> done..."
 
 # Install git-core
 echo -e "\n=> Installing git..."
-sudo $pm -y install git-core
+sudo $pm git-core
 echo "==> done..."
 
 echo -e "\n=> Downloading Ruby $ruby_version_string \n"
@@ -53,6 +51,7 @@ gem install bundler rails --no-ri --no-rdoc -f
 echo "==> done..."
 
 echo -e "\n=> Fix nokogiri warning with libxml2..."
+gem install nokogiri
 gem pristine nokogiri
 echo "==> done..."
 
