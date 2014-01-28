@@ -21,4 +21,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 6379, host: 6379    # redis
   config.vm.network :forwarded_port, guest: 27017, host: 27017  # mongodb
   config.vm.network :forwarded_port, guest: 80, host: 8080      # apache/nginx
+  config.vm.network :forwarded_port, guest: 8000, host: 8000    # PHP WebServer
 end
