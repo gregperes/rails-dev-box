@@ -30,12 +30,13 @@ sudo $pm git-core
 echo "==> done..."
 
 echo -e "\n=> Downloading Ruby $ruby_version_string \n"
-wget http://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p247.tar.gz
+wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.gz
 echo -e "\n==> done..."
 echo -e "\n=> Extracting Ruby $ruby_version_string"
-tar -xzvf ruby-2.0.0-p247.tar.gz
-cd ruby-2.0.0-p247/
+tar -xzvf ruby-2.1.0.tar.gz
+cd ruby-2.1.0/
 echo "==> done..."
+
 echo -e "\n=> Building Ruby $ruby_version_string (this will take a while)..."
 ./configure --prefix=/usr/local
 make
@@ -47,7 +48,7 @@ gem update --system --no-ri --no-rdoc
 echo "==> done..."
 
 echo -e "\n=> Installing bundler and rails..."
-gem install bundler rails --no-ri --no-rdoc -f 
+gem install bundler rails -f 
 echo "==> done..."
 
 echo -e "\n=> Fix nokogiri warning with libxml2..."
