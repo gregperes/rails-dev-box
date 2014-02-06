@@ -29,7 +29,7 @@ sudo $pm libxml2 libffi-dev libyaml-dev
 sudo $pm libxslt-dev autoconf libc6-dev
 sudo $pm libreadline6-dev zlib1g-dev libcurl4-openssl-dev libtool
 sudo $pm libsqlite3-0 sqlite3 libsqlite3-dev libmysqlclient-dev
-sudo $pm git-core nodejs python-software-properties
+sudo $pm git-core nodejs python-software-properties libpq-dev
 
 sudo apt-get update
 
