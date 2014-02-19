@@ -8,6 +8,9 @@ function printDone() {
 	echo "==> done..."
 }
 
+# Nodejs PPA
+sudo add-apt-repository ppa:chris-lea/node.js 
+
 # apt-get updating
 printMessage "apt-get updating..."
 
