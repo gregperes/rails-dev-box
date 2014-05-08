@@ -46,25 +46,28 @@ printDone
 # Ruby on Rails install
 printMessage "Installing Ruby"
 
-wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.gz
+wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.1.tar.gz
 echo -e "\n==> done..."
-echo -e "\n=> Extracting Ruby $ruby_version_string"
-tar -xzvf ruby-2.1.0.tar.gz
-cd ruby-2.1.0
+echo -e "\n=> Extracting Ruby 2.1.1"
+tar -xzvf ruby-2.1.1.tar.gz
+cd ruby-2.1.1
 
 ./configure --prefix=/usr/local
 make
 make install
 cd ..
-rm -R ruby-2.1.0
-rm -R ruby-2.1.0.tar.gz
+rm -R ruby-2.1.1
+rm -R ruby-2.1.1.tar.gz
+
+su vagrant
 
 gem update --system --no-ri --no-rdoc
 
 printMessage "Installing Rails"
 
-gem install bundler rails -f 
-gem install nokogiri
+gem install bundler --no-rdoc --no-ri
+gem install rails --no-rdoc --no-ri
+gem install nokogiri --no-rdoc --no-ri
 gem pristine nokogiri
 
 printDone
