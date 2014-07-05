@@ -85,7 +85,7 @@ sudo $pm php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt mysql-se
 sudo $pm php5-xdebug
 
 cat << EOF | sudo tee -a /etc/php5/mods-available/xdebug.ini
-xdebug.scream=1
+xdebug.scream=0
 xdebug.cli_color=1
 xdebug.show_local_vars=1
 EOF
