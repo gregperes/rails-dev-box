@@ -8,9 +8,6 @@ function printDone() {
 	echo "==> done..."
 }
 
-# Nodejs PPA
-sudo add-apt-repository ppa:chris-lea/node.js 
-
 # apt-get updating
 printMessage "apt-get updating..."
 
@@ -32,9 +29,16 @@ sudo $pm libxml2 libffi-dev libyaml-dev
 sudo $pm libxslt-dev autoconf libc6-dev
 sudo $pm libreadline6-dev zlib1g-dev libcurl4-openssl-dev libtool
 sudo $pm libsqlite3-0 sqlite3 libsqlite3-dev libmysqlclient-dev
-sudo $pm git-core nodejs python-software-properties libpq-dev
+sudo $pm git-core python-software-properties libpq-dev
 
+printDone
+
+# Nodejs install
+printMessage "Installing NodeJS"
+
+sudo add-apt-repository ppa:chris-lea/node.js
 sudo apt-get update
+sudo $pm nodejs
 
 printDone
 
