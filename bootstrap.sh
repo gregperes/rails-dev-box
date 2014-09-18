@@ -53,18 +53,18 @@ printDone
 # Ruby on Rails install
 printMessage "Installing Ruby"
 
-wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.1.tar.gz
+wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz
 echo -e "\n==> done..."
-echo -e "\n=> Extracting Ruby 2.1.1"
-tar -xzvf ruby-2.1.1.tar.gz
-cd ruby-2.1.1
+echo -e "\n=> Extracting Ruby 2.1.2"
+tar -xzvf ruby-2.1.2.tar.gz
+cd ruby-2.1.2
 
 ./configure --prefix=/usr/local
 make
 make install
 cd ..
-rm -R ruby-2.1.1
-rm -R ruby-2.1.1.tar.gz
+rm -R ruby-2.1.2
+rm -R ruby-2.1.2.tar.gz
 
 su vagrant
 
