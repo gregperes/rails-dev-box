@@ -6,7 +6,7 @@ This is my vagrant setup for development.
 #### Configuration
 -----------
 
-Ubuntu Precise64
+Ubuntu Trusty64
 
 + MySQL 5.5
 + Apache 2
