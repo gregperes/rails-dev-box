@@ -53,37 +53,32 @@ printDone
 # Ruby on Rails install
 printMessage "Installing Ruby"
 
-wget http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz
+wget http://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.gz
 echo -e "\n==> done..."
-echo -e "\n=> Extracting Ruby 2.1.2"
-tar -xzvf ruby-2.1.2.tar.gz
-cd ruby-2.1.2
+echo -e "\n=> Extracting Ruby 2.2.0"
+tar -xzvf ruby-2.2.0.tar.gz
+cd ruby-2.2.0
 
 ./configure --prefix=/usr/local
 make
 make install
 cd ..
-rm -R ruby-2.1.2
-rm -R ruby-2.1.2.tar.gz
+rm -R ruby-2.2.0
+rm -R ruby-2.2.0.tar.gz
 
-su vagrant
-
-gem update --system --no-ri --no-rdoc
+sudo gem update --system --no-ri --no-rdoc
 
 printMessage "Installing Rails"
 
-gem install bundler --no-rdoc --no-ri
-gem install rails --no-rdoc --no-ri
-gem install nokogiri --no-rdoc --no-ri
-gem pristine nokogiri
+sudo gem install bundler --no-rdoc --no-ri
+sudo gem install rails --no-rdoc --no-ri
+sudo gem install nokogiri --no-rdoc --no-ri
+sudo gem pristine nokogiri
 
 printDone
 
 # PHP install
 printMessage "Installing PHP"
-
-sudo add-apt-repository -y ppa:ondrej/php5
-sudo apt-get update
 
 sudo $pm php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt mysql-server-5.5 php5-mysql php5-sqlite
 sudo $pm php5-xdebug

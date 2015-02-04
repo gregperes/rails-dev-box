@@ -10,7 +10,7 @@ Ubuntu Trusty64
 
 + MySQL 5.5
 + Apache 2
-+ Ruby 2.1.2
-+ Rails 4.1
++ Ruby 2.2.0
++ Rails 4.2
 + PHP 5.5
 + Composer
