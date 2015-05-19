@@ -52,18 +52,18 @@ printDone
 # Ruby on Rails install
 printMessage "Installing Ruby"
 
-wget http://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.0.tar.gz
+wget http://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.2.tar.gz
 echo -e "\n==> done..."
-echo -e "\n=> Extracting Ruby 2.2.0"
-tar -xzvf ruby-2.2.0.tar.gz
-cd ruby-2.2.0
+echo -e "\n=> Extracting Ruby 2.2.2"
+tar -xzvf ruby-2.2.2.tar.gz
+cd ruby-2.2.2
 
 ./configure --prefix=/usr/local
 make
 make install
 cd ..
-rm -R ruby-2.2.0
-rm -R ruby-2.2.0.tar.gz
+rm -R ruby-2.2.2
+rm -R ruby-2.2.2.tar.gz
 
 sudo gem update --system --no-ri --no-rdoc
 
