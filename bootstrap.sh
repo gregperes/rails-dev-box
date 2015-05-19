@@ -36,8 +36,7 @@ printDone
 # Nodejs install
 printMessage "Installing NodeJS"
 
-sudo add-apt-repository ppa:chris-lea/node.js
-sudo apt-get update
+curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
 sudo $pm nodejs
 
 printDone
