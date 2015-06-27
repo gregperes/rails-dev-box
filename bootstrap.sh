@@ -37,7 +37,7 @@ printMessage "Installing essential tools"
 
 sudo $pm wget curl build-essential clang
 sudo $pm bison openssl zlib1g
-sudo $pm libxslt1.1 libssl-dev libxslt1-dev
+sudo $pm libxslt1.1 libssl-dev libxslt1-dev install tcl8.5
 sudo $pm libxml2 libffi-dev libyaml-dev
 sudo $pm libxslt-dev autoconf libc6-dev
 sudo $pm libreadline6-dev zlib1g-dev libcurl4-openssl-dev libtool
@@ -70,11 +70,13 @@ printMessage "Installing Redis"
 
 wget http://download.redis.io/releases/redis-3.0.2.tar.gz
 tar xzf redis-3.0.2.tar.gz
-cd redis-3.0.2
-make
-cd ..
-rm -R redis-3.0.2
 rm redis-3.0.2.tar.gz
+sudo mv redis-3.0.2 /etc/redis
+
+cd /etc/redis
+make
+
+echo -n | sudo utils/install_server.sh
 
 printDone
 #========================
@@ -91,6 +93,7 @@ cd ruby-2.2.2
 ./configure --prefix=/usr/local
 make
 make install
+
 cd ..
 rm -R ruby-2.2.2
 rm ruby-2.2.2.tar.gz
