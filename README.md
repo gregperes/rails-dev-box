@@ -9,6 +9,7 @@ This is my vagrant setup for development.
 Ubuntu Trusty64
 
 + MySQL 5.5
++ Redis 3.0.2
 + Apache 2
 + NodeJS
 + Ruby 2.2.2
