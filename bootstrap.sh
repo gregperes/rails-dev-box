@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+# Functions
 function printMessage() {
 	echo -e "\n=> $1 \n"
 }
@@ -8,6 +9,20 @@ function printDone() {
 	echo "==> done..."
 }
 
+function dos2unix(){
+  tr -d '\r' < "$1" > t
+  mv -f t "$1"
+}
+
+function unix2dos(){
+  sed -i 's/$/\r/' "$1"
+}
+#========================
+
+# Var declarations
+pm="apt-get install -y"
+#========================
+
 # apt-get updating
 printMessage "apt-get updating..."
 
@@ -15,9 +30,7 @@ sudo apt-get update
 sudo apt-get upgrade
 
 printDone
-
-# Var declarations
-pm="apt-get install -y"
+#========================
 
 # Installing essential tools
 printMessage "Installing essential tools"
@@ -32,6 +45,7 @@ sudo $pm libsqlite3-0 sqlite3 libsqlite3-dev libmysqlclient-dev
 sudo $pm git-core python-software-properties libpq-dev
 
 printDone
+#========================
 
 # Nodejs install
 printMessage "Installing NodeJS"
@@ -40,6 +54,7 @@ curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
 sudo $pm nodejs
 
 printDone
+#========================
 
 # MySQL install
 printMessage "Installing MySQL"
@@ -48,6 +63,21 @@ sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password passwor
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 
 printDone
+#========================
+
+# Redis Install
+printMessage "Installing Redis"
+
+wget http://download.redis.io/releases/redis-3.0.2.tar.gz
+tar xzf redis-3.0.2.tar.gz
+cd redis-3.0.2
+make
+cd ..
+rm -R redis-3.0.2
+rm redis-3.0.2.tar.gz
+
+printDone
+#========================
 
 # Ruby on Rails install
 printMessage "Installing Ruby"
@@ -63,7 +93,7 @@ make
 make install
 cd ..
 rm -R ruby-2.2.2
-rm -R ruby-2.2.2.tar.gz
+rm ruby-2.2.2.tar.gz
 
 sudo gem update --system --no-ri --no-rdoc
 
@@ -75,6 +105,7 @@ sudo gem install nokogiri --no-rdoc --no-ri
 sudo gem pristine nokogiri
 
 printDone
+#========================
 
 # PHP install
 printMessage "Installing PHP"
@@ -100,16 +131,7 @@ curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 
 printDone
-
-# Bash scripts install
-dos2unix(){
-  tr -d '\r' < "$1" > t
-  mv -f t "$1"
-}
-
-unix2dos(){
-  sed -i 's/$/\r/' "$1"
-}
+#========================
 
 printMessage "Installing bash"
 
@@ -118,3 +140,4 @@ dos2unix /home/vagrant/.bash/**/*.sh
 echo 'source /home/vagrant/.bash/init.sh' >> /home/vagrant/.bash_profile
 
 printMessage "All done. Enjoy! ;)"
+#========================
