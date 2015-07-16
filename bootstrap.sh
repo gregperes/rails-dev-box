@@ -68,15 +68,9 @@ printDone
 # Redis Install
 printMessage "Installing Redis"
 
-wget http://download.redis.io/releases/redis-3.0.2.tar.gz
-tar xzf redis-3.0.2.tar.gz
-rm redis-3.0.2.tar.gz
-sudo mv redis-3.0.2 /etc/redis
-
-cd /etc/redis
-make
-
-echo -n | sudo utils/install_server.sh
+sudo apt-add-repository ppa:chris-lea/redis-server
+sudo apt-get update
+sudo $pm redis-server
 
 printDone
 #========================
