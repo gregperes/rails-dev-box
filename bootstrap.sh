@@ -50,7 +50,7 @@ printDone
 # Nodejs install
 printMessage "Installing NodeJS"
 
-curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo $pm nodejs
 
 printDone
