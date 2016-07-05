@@ -14,5 +14,5 @@ Ubuntu Trusty64
 + NodeJS 6.2
 + Ruby 2.3
 + Rails 5.0
-+ PHP 5.5
++ PHP 5.6
 + Composer

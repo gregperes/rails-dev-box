@@ -59,6 +59,8 @@ printDone
 # MySQL install
 printMessage "Installing MySQL"
 
+sudo $pm mysql-server-5.5
+
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 
@@ -107,7 +109,10 @@ printDone
 # PHP install
 printMessage "Installing PHP"
 
-sudo $pm php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt mysql-server-5.5 php5-mysql php5-sqlite
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+
+sudo $pm php5.6 apache2 libapache2-mod-php5.6 php5.6-curl php5.6-gd php5.6-mcrypt php5.6-mysql php5.6-sqlite
 sudo $pm php5-xdebug
 
 cat << EOF | sudo tee -a /etc/php5/mods-available/xdebug.ini
