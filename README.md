@@ -8,11 +8,10 @@ This is my vagrant setup for development.
 
 Ubuntu Trusty64
 
-+ MySQL 5.5
++ MySQL 5.6
 + Redis 3.0
-+ Apache 2
-+ NodeJS 6.2
-+ Ruby 2.3
-+ Rails 5.0
-+ PHP 5.6
++ NodeJS 9.11
++ Ruby 2.5
++ Rails 5.2
++ PHP 7.2
 + Composer

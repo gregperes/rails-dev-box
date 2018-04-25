@@ -50,16 +50,16 @@ printDone
 # Nodejs install
 printMessage "Installing NodeJS"
 
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 sudo $pm nodejs
 
 printDone
 #========================
 
 # MySQL install
-printMessage "Installing MySQL"
+printMessage "Installing MySQL 5.6"
 
-sudo $pm mysql-server-5.5
+sudo $pm mysql-server-5.6
 
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
@@ -80,19 +80,19 @@ printDone
 # Ruby on Rails install
 printMessage "Installing Ruby"
 
-wget https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.gz
+wget https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz
 echo -e "\n==> done..."
-echo -e "\n=> Extracting Ruby 2.3.1"
-tar -xzvf ruby-2.3.1.tar.gz
-cd ruby-2.3.1
+echo -e "\n=> Extracting Ruby 2.5.1"
+tar -xzvf ruby-2.5.1.tar.gz
+cd ruby-2.5.1
 
 ./configure --prefix=/usr/local
 make
 make install
 
 cd ..
-rm -R ruby-2.3.1
-rm ruby-2.3.1.tar.gz
+rm -R ruby-2.5.1
+rm ruby-2.5.1.tar.gz
 
 sudo gem update --system --no-ri --no-rdoc
 
@@ -100,34 +100,17 @@ printMessage "Installing Rails"
 
 sudo gem install bundler --no-rdoc --no-ri
 sudo gem install rails --no-rdoc --no-ri
-sudo gem install nokogiri --no-rdoc --no-ri
-sudo gem pristine nokogiri
 
 printDone
 #========================
 
 # PHP install
-printMessage "Installing PHP"
+printMessage "Installing PHP 7.2"
 
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
 
-sudo $pm php5.6 apache2 libapache2-mod-php5.6 php5.6-curl php5.6-gd php5.6-mcrypt php5.6-mysql php5.6-sqlite
-sudo $pm php5-xdebug
-
-cat << EOF | sudo tee -a /etc/php5/mods-available/xdebug.ini
-xdebug.scream=0
-xdebug.cli_color=1
-xdebug.show_local_vars=1
-EOF
-
-sudo a2enmod rewrite
-
-sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php5/apache2/php.ini
-sed -i "s/display_errors = .*/display_errors = On/" /etc/php5/apache2/php.ini
-sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
-
-sudo service apache2 restart
+sudo $pm php7.2 php7.2-common php7.2-dev php7.2-mbstring php7.2-cli php7.2-curl php7.2-gd php7.2-mysql php7.2-sqlite3
 
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
