@@ -6,7 +6,7 @@ This is my vagrant setup for development.
 #### Configuration
 -----------
 
-Ubuntu Trusty64
+Ubuntu Xenial64
 
 + MySQL 5.6
 + Redis 3.0
