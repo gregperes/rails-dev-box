@@ -6,12 +6,17 @@ This is my vagrant setup for development.
 #### Configuration
 -----------
 
-Ubuntu Xenial64
+Ubuntu Bionic64
 
-+ MySQL 5.6
-+ Redis 3.0
-+ NodeJS 9.11
+Languages & Frameworks
+
++ NodeJS 10
 + Ruby 2.5
 + Rails 5.2
-+ PHP 7.2
++ PHP 7
 + Composer
+
+Databases
+
++ MariaDB 10
++ Redis 3

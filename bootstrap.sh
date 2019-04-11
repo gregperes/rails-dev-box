@@ -20,89 +20,80 @@ function unix2dos(){
 #========================
 
 # Var declarations
-pm="apt-get install -y"
+pm="sudo apt install -y"
 #========================
 
 # Installing essential tools
 printMessage "Installing essential tools"
+$pm wget curl build-essential clang
+$pm bison openssl zlib1g make gcc pkg-config autoconf
+$pm libxslt1.1 libssl1.0-dev libxslt1-dev install tcl8.5
+$pm libxml2 libffi-dev libyaml- libxslt-dev libc6-dev
+$pm libreadline6-dev libgdbm-dev zlib1g-dev libcurl4-openssl-dev libtool
+$pm libsqlite3-0 sqlite3 libsqlite3-dev libmysqlclient-dev libpq-dev
+$pm git-core software-properties-common python-software-properties
+printDone
+#========================
 
-sudo $pm wget curl build-essential clang
-sudo $pm bison openssl zlib1g make gcc pkg-config
-sudo $pm libxslt1.1 libssl1.0-dev libxslt1-dev install tcl8.5
-sudo $pm libxml2 libffi-dev libyaml-dev
-sudo $pm libxslt-dev autoconf libc6-dev
-sudo $pm libreadline6-dev libgdbm-dev zlib1g-dev libcurl4-openssl-dev libtool
-sudo $pm libsqlite3-0 sqlite3 libsqlite3-dev libmysqlclient-dev
-sudo $pm git-core python-software-properties 
-sudo $pm libpq-dev
-
+# Repos install
+printMessage "Installing essential repos"
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+sudo add-apt-repository "deb [arch=amd64,arm64,ppc64el] http://mariadb.mirror.liquidtelecom.com/repo/10.4/ubuntu $(lsb_release -cs) main"
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+sudo apt-get update
 printDone
 #========================
 
 # Nodejs install
 printMessage "Installing NodeJS"
-
-curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
-sudo $pm nodejs
-
+$pm nodejs
 printDone
 #========================
 
 # MySQL install
-printMessage "Installing MySQL 5.7"
-
-sudo $pm mysql-server-5.7
-
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
-
+printMessage "Installing MariaDB 10"
+$pm mariadb-server mariadb-client
 printDone
 #========================
 
 # Redis Install
 printMessage "Installing Redis"
+$pm redis-server
+printDone
+#========================
 
-sudo apt-add-repository ppa:chris-lea/redis-server
-sudo apt-get update
-sudo $pm redis-server
-
+# Ruby install
+printMessage "Installing Ruby"
+$pm ruby-full
 printDone
 #========================
 
 # Ruby on Rails install
-printMessage "Installing Ruby"
-
-sudo $pm ruby-full
-
-sudo gem update --system --no-ri --no-rdoc
-
 printMessage "Installing Rails"
-
-sudo gem install bundler --no-rdoc --no-ri
-sudo gem install rails --no-rdoc --no-ri
-
+sudo gem update --system
+sudo gem install bundler
+sudo gem install rails
 printDone
 #========================
 
 # PHP install
-printMessage "Installing PHP 7.2"
-
-sudo add-apt-repository ppa:ondrej/php
-sudo apt-get update
-
-sudo $pm php7.2 php7.2-common php7.2-dev php7.2-mbstring php7.2-cli php7.2-curl php7.2-gd php7.2-mysql php7.2-sqlite3
-
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/composer
-
+printMessage "Installing PHP"
+sudo $pm php7.3 php7.3-common php7.3-dev php7.3-mbstring php7.3-cli php7.3-curl php7.3-gd php7.3-mysql php7.3-sqlite3
 printDone
 #========================
 
-printMessage "Installing bash"
+# Composer install
+printMessage "Installing Composer"
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+printDone
+#========================
 
+# Bash install
+printMessage "Installing bash"
 git clone https://github.com/gregperes/bash.git /home/vagrant/.bash
 dos2unix /home/vagrant/.bash/**/*.sh
 echo 'source /home/vagrant/.bash/init.sh' >> /home/vagrant/.bash_profile
-
 printMessage "All done. Enjoy! ;)"
 #========================
