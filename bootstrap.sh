@@ -32,6 +32,7 @@ $pm libxml2 libffi-dev libyaml- libxslt-dev libc6-dev
 $pm libreadline6-dev libgdbm-dev zlib1g-dev libcurl4-openssl-dev libtool
 $pm libsqlite3-0 sqlite3 libsqlite3-dev libmysqlclient-dev libpq-dev
 $pm git-core software-properties-common python-software-properties
+$pm docker.io
 printDone
 #========================
 
